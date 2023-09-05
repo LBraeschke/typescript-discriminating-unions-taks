@@ -1,4 +1,9 @@
-import { expectNever, getCanvasContext } from './helper';
+import { getCanvasContext, updateCounter } from './helper';
+import {
+  circleStorage,
+  rectangleStorage,
+  triangleStorage,
+} from './list-storage';
 import { logShape } from './logger';
 import { Circle, Rectangle, Shape, Triangle } from './shape';
 
@@ -38,13 +43,20 @@ export const drawShape = function (shape: Shape): void {
   const context = getCanvasContext();
   // TODO: TASK 6B: replace if sturcture with switch case
   // TODO: TASK 7: add Exhaustive Type Checking
-  if (shape['width']) {
+  if (shape.hasOwnProperty('width')) {
     drawRectangleToContext(context, shape as Rectangle);
+    rectangleStorage.save(shape as Rectangle);
   }
-  if (shape['point1']) {
+  if (shape.hasOwnProperty('point1')) {
     drawTriangleToContext(context, shape as Triangle);
+    triangleStorage.save(shape as Triangle);
   }
-  if (shape['radius']) {
+  if (shape.hasOwnProperty('radius')) {
     drawCircleToContext(context, shape as Circle);
+    circleStorage.save(shape as Circle);
   }
+
+  updateCounter();
 };
+
+updateCounter();

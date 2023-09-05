@@ -1,3 +1,9 @@
+import {
+  circleStorage,
+  rectangleStorage,
+  triangleStorage,
+} from './list-storage';
+
 export const getCanvasContext = (): CanvasRenderingContext2D => {
   const canvas = document.getElementById('canvas') as HTMLCanvasElement;
   if (!canvas.getContext) {
@@ -9,3 +15,11 @@ export const getCanvasContext = (): CanvasRenderingContext2D => {
 export function expectNever(value: never) {
   throw new Error('A unkown error was thrown' + value);
 }
+
+export const updateCounter = function (): void {
+  const targetElement = document.getElementById('shape-log');
+  if (targetElement === null) {
+    return;
+  }
+  targetElement.innerText = `${rectangleStorage.count()} rectangles, ${triangleStorage.count()} triangles and ${circleStorage.count()} circles.`;
+};
