@@ -1,15 +1,12 @@
-import {
-  circleStorage,
-  rectangleStorage,
-  triangleStorage,
-} from './list-storage';
+import { getShapeCountFromCache } from './list-storage';
 
 export const getCanvasContext = (): CanvasRenderingContext2D => {
   const canvas = document.getElementById('canvas') as HTMLCanvasElement;
-  if (!canvas.getContext) {
+  const context = canvas.getContext('2d');
+  if (!context) {
     throw new Error('The element is not a canvas.');
   }
-  return canvas.getContext('2d');
+  return context;
 };
 
 export function expectNever(value: never) {
@@ -21,5 +18,9 @@ export const updateCounter = function (): void {
   if (targetElement === null) {
     return;
   }
-  targetElement.innerText = `${rectangleStorage.count()} rectangles, ${triangleStorage.count()} triangles and ${circleStorage.count()} circles.`;
+  targetElement.innerText = `${getShapeCountFromCache(
+    'rectangle'
+  )} rectangles, ${getShapeCountFromCache(
+    'triangle'
+  )} triangles and ${getShapeCountFromCache('circle')} circles.`;
 };

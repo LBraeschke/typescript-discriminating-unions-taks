@@ -1,23 +1,17 @@
-import { Circle, Rectangle, Triangle } from './shape';
+import { Shape, ShapeIdentifyer } from './shape';
 
-class ListStorage<T> {
-  public constructor(private key: string) {}
-
-  public get(): T[] {
-    const stringValue = sessionStorage.getItem(this.key);
-    return stringValue ? (JSON.parse(stringValue) as T[]) : [];
-  }
-
-  public save(value: T): void {
-    const oldValues = this.get();
-    sessionStorage.setItem(this.key, JSON.stringify([...oldValues, value]));
-  }
-
-  public count(): number {
-    return this.get().length;
-  }
+export function getShapeFromCache<T extends Shape>(key: T['name']): T[] {
+  const stringValue = sessionStorage.getItem(key);
+  return stringValue ? (JSON.parse(stringValue) as T[]) : [];
 }
 
-export const triangleStorage = new ListStorage<Triangle>('triangle');
-export const rectangleStorage = new ListStorage<Rectangle>('rectangle');
-export const circleStorage = new ListStorage<Circle>('circle');
+export function writeShapeToCache<T extends Shape>(value: T): void {
+  const oldValues = getShapeFromCache(value.name);
+  sessionStorage.setItem(value.name, JSON.stringify([...oldValues, value]));
+}
+
+export function getShapeCountFromCache<T extends Shape>(
+  key: ShapeIdentifyer
+): number {
+  return getShapeFromCache(key).length;
+}

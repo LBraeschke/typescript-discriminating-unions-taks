@@ -1,11 +1,7 @@
-import { getCanvasContext, updateCounter } from './helper';
-import {
-  circleStorage,
-  rectangleStorage,
-  triangleStorage,
-} from './list-storage';
+import { expectNever, getCanvasContext, updateCounter } from './helper';
+import { writeShapeToCache } from './list-storage';
 import { logShape } from './logger';
-import { Circle, Rectangle, Shape, Triangle } from './shape';
+import { Circle, Rectangle, Shape, shapeIdentifyers, Triangle } from './shape';
 
 const drawRectangleToContext = function (
   context: CanvasRenderingContext2D,
@@ -41,21 +37,21 @@ const drawCircleToContext = function (
 export const drawShape = function (shape: Shape): void {
   logShape(shape);
   const context = getCanvasContext();
-  // TODO: TASK 6B: replace if sturcture with switch case
-  // TODO: TASK 7: add Exhaustive Type Checking
-  if (shape.hasOwnProperty('width')) {
-    drawRectangleToContext(context, shape as Rectangle);
-    rectangleStorage.save(shape as Rectangle);
-  }
-  if (shape.hasOwnProperty('point1')) {
-    drawTriangleToContext(context, shape as Triangle);
-    triangleStorage.save(shape as Triangle);
-  }
-  if (shape.hasOwnProperty('radius')) {
-    drawCircleToContext(context, shape as Circle);
-    circleStorage.save(shape as Circle);
+  switch (shape.name) {
+    case shapeIdentifyers[0]:
+      drawRectangleToContext(context, shape);
+      break;
+    case shapeIdentifyers[1]:
+      drawTriangleToContext(context, shape);
+      break;
+    case shapeIdentifyers[2]:
+      drawCircleToContext(context, shape);
+      break;
+    default:
+      expectNever(shape);
   }
 
+  writeShapeToCache(shape);
   updateCounter();
 };
 
