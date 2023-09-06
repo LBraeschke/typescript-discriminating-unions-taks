@@ -2,26 +2,32 @@
 // TODO: TASK 10: Add a Square which inherits everything from Rectangle except it only has a width
 // TODO: TASK 12: Make all Types and Interfaces readonly
 
-export const shapeIdentifyers = ['rectangle', 'triangle', 'circle'] as const;
+export const shapeIdentifyers = [
+  'rectangle',
+  'triangle',
+  'circle',
+  'square',
+  'hexagon',
+] as const;
 
-export interface Rectangle extends Point {
+export interface Rectangle extends Point, BaseSahpe {
   name: 'rectangle';
   width: number;
   height: number;
 }
 
-export interface Square extends Omit<Point, 'height'> {
-  name: 'Square';
+export interface Square extends BaseSahpe, Omit<Rectangle, 'height' | 'name'> {
+  name: 'square';
 }
 
-export interface Triangle {
+export interface Triangle extends BaseSahpe {
   name: 'triangle';
   point1: Point;
   point2: Point;
   point3: Point;
 }
 
-export interface Hexagon {
+export interface Hexagon extends BaseSahpe {
   name: 'hexagon';
   point1: Point;
   point2: Point;
@@ -31,7 +37,7 @@ export interface Hexagon {
   point6: Point;
 }
 
-export interface Circle extends Point {
+export interface Circle extends Point, BaseSahpe {
   name: 'circle';
   radius: number;
 }
@@ -39,6 +45,10 @@ export interface Circle extends Point {
 export interface Point {
   x: number;
   y: number;
+}
+
+interface BaseSahpe {
+  name: ShapeIdentifyer;
 }
 
 type DeepReadonly<T> = {
