@@ -10,11 +10,25 @@ export interface Rectangle extends Point {
   height: number;
 }
 
+export interface Square extends Omit<Point, 'height'> {
+  name: 'Square';
+}
+
 export interface Triangle {
   name: 'triangle';
   point1: Point;
   point2: Point;
   point3: Point;
+}
+
+export interface Hexagon {
+  name: 'hexagon';
+  point1: Point;
+  point2: Point;
+  point3: Point;
+  point4: Point;
+  point5: Point;
+  point6: Point;
 }
 
 export interface Circle extends Point {
@@ -27,5 +41,12 @@ export interface Point {
   y: number;
 }
 
-export type Shape = Rectangle | Triangle | Circle;
+type DeepReadonly<T> = {
+  readonly [P in keyof T]: DeepReadonly<T[P]>;
+};
+
+export type Shape = DeepReadonly<
+  Rectangle | Triangle | Circle | Hexagon | Square
+>;
+
 export type ShapeIdentifyer = typeof shapeIdentifyers[number];
