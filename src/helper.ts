@@ -1,4 +1,10 @@
 import { getShapeCountFromCache } from './list-storage';
+import { shapeIdentifyers } from './shape';
+
+const formatter = new Intl.ListFormat('en-GB', {
+  style: 'long',
+  type: 'conjunction',
+});
 
 export const getCanvasContext = (): CanvasRenderingContext2D => {
   const canvas = document.getElementById('canvas') as HTMLCanvasElement;
@@ -18,9 +24,10 @@ export const updateCounter = function (): void {
   if (targetElement === null) {
     return;
   }
-  targetElement.innerText = `${getShapeCountFromCache(
-    'rectangle'
-  )} rectangles, ${getShapeCountFromCache(
-    'triangle'
-  )} triangles and ${getShapeCountFromCache('circle')} circles.`;
+
+  const text = shapeIdentifyers.map(
+    (shape) => `${getShapeCountFromCache(shape)} ${shape}s`
+  );
+
+  targetElement.innerText = formatter.format(text);
 };
