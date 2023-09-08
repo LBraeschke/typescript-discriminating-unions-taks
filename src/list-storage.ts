@@ -1,14 +1,14 @@
-import { Circle, Rectangle, Triangle } from './shape';
+import { Shape } from './shape';
 
-class ListStorage<T> {
+class ListStorage {
   public constructor(private key: string) {}
 
-  public get(): T[] {
+  public get(): Shape[] {
     const stringValue = sessionStorage.getItem(this.key);
-    return stringValue ? (JSON.parse(stringValue) as T[]) : [];
+    return stringValue ? JSON.parse(stringValue) : [];
   }
 
-  public save(value: T): void {
+  public save(value: Shape): void {
     const oldValues = this.get();
     sessionStorage.setItem(this.key, JSON.stringify([...oldValues, value]));
   }
@@ -18,6 +18,6 @@ class ListStorage<T> {
   }
 }
 
-export const triangleStorage = new ListStorage<Triangle>('triangle');
-export const rectangleStorage = new ListStorage<Rectangle>('rectangle');
-export const circleStorage = new ListStorage<Circle>('circle');
+export const triangleStorage = new ListStorage('triangle');
+export const rectangleStorage = new ListStorage('rectangle');
+export const circleStorage = new ListStorage('circle');
