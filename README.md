@@ -10,7 +10,7 @@ Improve the code's readability and maintainability by fulfilling the given tasks
 ### 1) What's the point?
 The `Rectangle` and `Circle` interfaces both define the properties `x` and `y`.
 
-Instead make them inherit the interface `Point` instead. Alternatively you may use the intersection type.
+Instead make them inherit the interface `Point`. Alternatively you may use the intersection type.
 
 _You will need to modify `shape.ts`._
 
