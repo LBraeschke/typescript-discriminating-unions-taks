@@ -1,7 +1,7 @@
 class ListStorage {
   public constructor(private key: string) {}
 
-  public get(): any[] {
+  public get(): any {
     const stringValue = sessionStorage.getItem(this.key);
     return stringValue ? JSON.parse(stringValue) : [];
   }

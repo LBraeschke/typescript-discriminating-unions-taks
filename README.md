@@ -10,7 +10,7 @@ Improve the code's readability and maintainability by fulfilling the given tasks
 ### 1) What's the point?
 The `Rectangle` and `Circle` interfaces both define the properties `x` and `y`.
 
-Instead make them inherit the interface `Point`. Alternatively you may use the intersection type.
+Instead make them inherit the interface `Point`.
 
 _You will need to modify `shape.ts`._
 
@@ -41,5 +41,7 @@ _You will need to modify `draw.ts` and `index.ts`._
 
 ### 4) Make the list-storage generic
 Currently, the `ListStorage` allows us to store, retrieve and count objects of type `any`. Use generics so we no longer bypass TypeScript's type system.
+
+Don't forget that `triangleStorage`, `rectangleStorage` and `circleStorage` need to explicitly set the generic's type when calling `ListStorage`'s constructor.
 
 _You will need to modify `list-storage.ts`._
