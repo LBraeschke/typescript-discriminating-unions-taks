@@ -1,6 +1,3 @@
-import { Shape } from './shape';
-
-export function logShape(shape: Shape) {
+export function logShape(shape: any) {
   console.log(shape);
-  // TODO: TASK 8(Optional): use Exhaustive Type Checking
 }

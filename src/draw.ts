@@ -5,14 +5,13 @@ import {
   triangleStorage,
 } from './list-storage';
 import { logShape } from './logger';
-import { Circle, Rectangle, Shape, Triangle } from './shape';
+import { Circle, Rectangle, Triangle } from './shape';
 
 const drawRectangleToContext = function (
   context: CanvasRenderingContext2D,
   rectangle: Rectangle
 ): void {
   context.fillStyle = 'rgba(200, 0, 0, 0.3)';
-  //TODO: Task 11: Add a TypeGuard to check if the object is a Square or a Rectangle
   context.fillRect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
 };
 
@@ -38,25 +37,28 @@ const drawCircleToContext = function (
   context.fill();
 };
 
-export const drawShape = function (shape: Shape): void {
+export const drawRectangle = function (shape: Rectangle): void {
   logShape(shape);
   const context = getCanvasContext();
-  // TODO: TASK 6B: replace if sturcture with switch case
-  // TODO: TASK 7: add Exhaustive Type Checking
-  if (shape.hasOwnProperty('width')) {
-    drawRectangleToContext(context, shape as Rectangle);
-    rectangleStorage.save(shape as Rectangle);
-  }
-  if (shape.hasOwnProperty('point1')) {
-    drawTriangleToContext(context, shape as Triangle);
-    triangleStorage.save(shape as Triangle);
-  }
-  if (shape.hasOwnProperty('radius')) {
-    drawCircleToContext(context, shape as Circle);
-    circleStorage.save(shape as Circle);
-  }
-
+  drawRectangleToContext(context, shape);
+  rectangleStorage.save(shape);
   updateCounter();
-};
+}
+
+export const drawTriangle = function (shape: Triangle): void {
+  logShape(shape);
+  const context = getCanvasContext();
+  drawTriangleToContext(context, shape);
+  triangleStorage.save(shape);
+  updateCounter();
+}
+
+export const drawCircle = function (shape: Circle): void {
+  logShape(shape);
+  const context = getCanvasContext();
+  drawCircleToContext(context, shape);
+  circleStorage.save(shape);
+  updateCounter();
+}
 
 updateCounter();

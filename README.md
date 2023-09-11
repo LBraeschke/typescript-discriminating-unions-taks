@@ -1,15 +1,45 @@
-# typescript-discriminating-unions-taks
+# Practical exercises
 
 [Edit on StackBlitz ⚡️](https://stackblitz.com/edit/typescript-n4pvco)
 
-The repo is meant to work as a bad example.
-The idea is to resolve all TODO´s in the code and using the principale of Discriminating Unions to transform it to a extentable code basis.
+The repo is meant to serve as a bad example.
 
-- shape.ts -> TASK 6A: add Discriminating Union Type Identifier to all Shapes
-- draw.ts -> TASK 6B: replace if sturcture with switch case
-- draw.ts -> TASK 7: add Exhaustive Type Checking
-- logger.ts -> TASK 8 (Optional): use Exhaustive Type Checking
-- shape.ts -> TASK 9 (Optional): Add a new Shape Hexagon
-- shape.ts -> TASK 10 :Add a Square Shape which inherits everything from Rectangle except it only has a width
-- draw.ts -> Task 11: Add a TypeGuard to check if the object is a Square or a Rectangle
-- shape.ts -> TASK 12: Make all Types and Interfaces readonly
+Improve the code's readability and maintainability by fulfilling the given tasks using the learned principles.
+
+## Exercise block 1
+### 1) What's the point?
+The `Rectangle` and `Circle` interfaces both define the properties `x` and `y`.
+
+Instead make them inherit the interface `Point` instead. Alternatively you may use the intersection type.
+
+_You will need to modify `shape.ts`._
+
+### 2) It's taking shape
+Rectangles, triangles and sphere are all shapes. Using the union type, create a `Shape`.
+
+_You will need to modify `shape.ts`._
+
+### 3) One shape to rule them all
+There are 3 very similar functions in `draw.ts` - `drawRectangle`, `drawTriangle` and `drawCircle`.
+
+Replace them with the single function `drawShape`. It should accept an argument of type `Shape` (which we created in the previous task).
+
+To differentiate between each shape within the function you may use:
+```
+if ('width' in shape) {
+    // .. rectangle-specific code here
+}
+if ('point1' in shape) {
+    // .. triangle-specific code here
+}
+if ('radius' in shape) {
+    // .. circle-specific code here
+}
+```
+
+_You will need to modify `draw.ts` and `index.ts`._
+
+### 4) Make the list-storage generic
+Currently, the `ListStorage` allows us to store, retrieve and count objects of type `any`. Use generics so we no longer bypass TypeScript's type system.
+
+_You will need to modify `list-storage.ts`._
