@@ -1,4 +1,4 @@
-import { Shape, ShapeIdentifyer } from './shape';
+import { Shape, ShapeIdentifier } from './shape';
 
 export function getShapeFromCache<T extends Shape>(key: T['name']): T[] {
   const stringValue = sessionStorage.getItem(key);
@@ -10,8 +10,8 @@ export function writeShapeToCache<T extends Shape>(value: T): void {
   sessionStorage.setItem(value.name, JSON.stringify([...oldValues, value]));
 }
 
-export function getShapeCountFromCache<T extends Shape>(
-  key: ShapeIdentifyer
+export function getShapeCountFromCache(
+  key: ShapeIdentifier
 ): number {
   return getShapeFromCache(key).length;
 }

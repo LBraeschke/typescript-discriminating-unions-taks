@@ -1,5 +1,5 @@
 import { getShapeCountFromCache } from './list-storage';
-import { shapeIdentifyers } from './shape';
+import { ShapeIdentifier } from './shape';
 
 const formatter = new Intl.ListFormat('en-GB', {
   style: 'long',
@@ -25,7 +25,7 @@ export const updateCounter = function (): void {
     return;
   }
 
-  const text = shapeIdentifyers.map(
+  const text = ShapeIdentifier.map(
     (shape) => `${getShapeCountFromCache(shape)} ${shape}s`
   );
 

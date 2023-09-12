@@ -1,33 +1,23 @@
-// TODO: TASK 9 (Optional): Add a new form Hexagon
-// TODO: TASK 10: Add a Square which inherits everything from Rectangle except it only has a width
-// TODO: TASK 12: Make all Types and Interfaces readonly
+export type ShapeIdentifier = 'rectangle' | 'triangle' | 'circle' | 'square' | 'hexagon';
 
-export const shapeIdentifyers = [
-  'rectangle',
-  'triangle',
-  'circle',
-  'square',
-  'hexagon',
-] as const;
-
-export interface Rectangle extends Point, BaseSahpe {
+export interface Rectangle extends Point, BaseShape {
   name: 'rectangle';
   width: number;
   height: number;
 }
 
-export interface Square extends BaseSahpe, Omit<Rectangle, 'height' | 'name'> {
+export interface Square extends BaseShape, Omit<Rectangle, 'height' | 'name'> {
   name: 'square';
 }
 
-export interface Triangle extends BaseSahpe {
+export interface Triangle extends BaseShape {
   name: 'triangle';
   point1: Point;
   point2: Point;
   point3: Point;
 }
 
-export interface Hexagon extends BaseSahpe {
+export interface Hexagon extends BaseShape {
   name: 'hexagon';
   point1: Point;
   point2: Point;
@@ -37,7 +27,7 @@ export interface Hexagon extends BaseSahpe {
   point6: Point;
 }
 
-export interface Circle extends Point, BaseSahpe {
+export interface Circle extends Point, BaseShape {
   name: 'circle';
   radius: number;
 }
@@ -47,8 +37,8 @@ export interface Point {
   y: number;
 }
 
-interface BaseSahpe {
-  name: ShapeIdentifyer;
+interface BaseShape {
+  name: ShapeIdentifier;
 }
 
 type DeepReadonly<T> = {
@@ -58,5 +48,3 @@ type DeepReadonly<T> = {
 export type Shape = DeepReadonly<
   Rectangle | Triangle | Circle | Hexagon | Square
 >;
-
-export type ShapeIdentifyer = typeof shapeIdentifyers[number];
