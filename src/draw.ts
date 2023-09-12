@@ -12,7 +12,6 @@ const drawRectangleToContext = function (
   rectangle: Rectangle
 ): void {
   context.fillStyle = 'rgba(200, 0, 0, 0.3)';
-  //TODO: Task 11: Add a TypeGuard to check if the object is a Square or a Rectangle
   context.fillRect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
 };
 
@@ -41,8 +40,6 @@ const drawCircleToContext = function (
 export const drawShape = function (shape: Shape): void {
   logShape(shape);
   const context = getCanvasContext();
-  // TODO: TASK 6B: replace if sturcture with switch case
-  // TODO: TASK 7: add Exhaustive Type Checking
   if (shape.hasOwnProperty('width')) {
     drawRectangleToContext(context, shape as Rectangle);
     rectangleStorage.save(shape as Rectangle);

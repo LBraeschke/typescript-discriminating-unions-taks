@@ -15,7 +15,7 @@ export const getCanvasContext = (): CanvasRenderingContext2D => {
 };
 
 export function expectNever(value: never) {
-  throw new Error('A unkown error was thrown' + value);
+  throw new Error('An unknown error was thrown' + value);
 }
 
 export const updateCounter = function (): void {
