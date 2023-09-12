@@ -40,17 +40,17 @@ const drawCircleToContext = function (
 export const drawShape = function (shape: Shape): void {
   logShape(shape);
   const context = getCanvasContext();
-  if (shape.hasOwnProperty('width')) {
-    drawRectangleToContext(context, shape as Rectangle);
-    rectangleStorage.save(shape as Rectangle);
+  if ('width' in shape) {
+    drawRectangleToContext(context, shape);
+    rectangleStorage.save(shape);
   }
-  if (shape.hasOwnProperty('point1')) {
-    drawTriangleToContext(context, shape as Triangle);
-    triangleStorage.save(shape as Triangle);
+  if ('point1' in shape) {
+    drawTriangleToContext(context, shape);
+    triangleStorage.save(shape);
   }
-  if (shape.hasOwnProperty('radius')) {
-    drawCircleToContext(context, shape as Circle);
-    circleStorage.save(shape as Circle);
+  if ('radius' in shape) {
+    drawCircleToContext(context, shape);
+    circleStorage.save(shape);
   }
 
   updateCounter();
