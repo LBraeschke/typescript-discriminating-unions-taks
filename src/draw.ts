@@ -5,7 +5,7 @@ import {
   Circle,
   Hexagon,
   Rectangle,
-  Shape,
+  Shape, ShapeIdentifier,
   Square,
   Triangle,
 } from './shape';
@@ -70,17 +70,17 @@ export const drawShape = function (shape: Shape): void {
   logShape(shape);
   const context = getCanvasContext();
   switch (shape.name) {
-    case 'rectangle':
-    case 'square':
+    case ShapeIdentifier.RECTANGLE:
+    case ShapeIdentifier.SQUARE:
       drawRectangleToContext(context, shape);
       break;
-    case 'triangle':
+    case ShapeIdentifier.TRIANGLE:
       drawTriangleToContext(context, shape);
       break;
-    case 'hexagon':
+    case ShapeIdentifier.HEXAGON:
       drawHexagonToContext(context, shape);
       break;
-    case 'circle':
+    case ShapeIdentifier.CIRCLE:
       drawCircleToContext(context, shape);
       break;
     default:

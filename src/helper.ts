@@ -25,8 +25,8 @@ export const updateCounter = function (): void {
     return;
   }
 
-  const text = ShapeIdentifier.map(
-    (shape) => `${getShapeCountFromCache(shape)} ${shape}s`
+  const text = Object.entries(ShapeIdentifier).map(
+      ([key, value]) => `${getShapeCountFromCache(value)} ${value}s`
   );
 
   targetElement.innerText = formatter.format(text);

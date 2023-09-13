@@ -1,24 +1,30 @@
-export type ShapeIdentifier = 'rectangle' | 'triangle' | 'circle' | 'square' | 'hexagon';
+export enum ShapeIdentifier {
+  RECTANGLE = 'rectangle',
+  TRIANGLE = 'triangle',
+  CIRCLE = 'circle',
+  SQUARE = 'square',
+  HEXAGON = 'hexagon'
+};
 
 export interface Rectangle extends Point, BaseShape {
-  name: 'rectangle';
+  name: ShapeIdentifier.RECTANGLE;
   width: number;
   height: number;
 }
 
 export interface Square extends BaseShape, Omit<Rectangle, 'height' | 'name'> {
-  name: 'square';
+  name: ShapeIdentifier.SQUARE;
 }
 
 export interface Triangle extends BaseShape {
-  name: 'triangle';
+  name: ShapeIdentifier.TRIANGLE;
   point1: Point;
   point2: Point;
   point3: Point;
 }
 
 export interface Hexagon extends BaseShape {
-  name: 'hexagon';
+  name: ShapeIdentifier.HEXAGON;
   point1: Point;
   point2: Point;
   point3: Point;
@@ -28,7 +34,7 @@ export interface Hexagon extends BaseShape {
 }
 
 export interface Circle extends Point, BaseShape {
-  name: 'circle';
+  name: ShapeIdentifier.CIRCLE;
   radius: number;
 }
 
